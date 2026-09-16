@@ -13,6 +13,7 @@ const GlobalStarfield = dynamic(
 );
 
 import ContinuousSpaceshipTrail from "@/components/ui/ContinuousSpaceshipTrail";
+import ContactModal from "@/components/ui/ContactModal";
 
 const chakra = Chakra_Petch({
   weight: ["300", "400", "500", "600", "700"],
@@ -74,6 +75,7 @@ export default function RootLayout({
         <ContinuousSpaceshipTrail />
         <SmoothScroll>
           <Header />
+          <ContactModal />
           {/* Website content & interactive cards in front (Layer 2, z-10) */}
           <main className="relative z-10">{children}</main>
         </SmoothScroll>

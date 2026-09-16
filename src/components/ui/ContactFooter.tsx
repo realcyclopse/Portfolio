@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Copy, Check, Mail, MapPin, Github, Linkedin, Terminal, Sparkles } from "lucide-react";
 import confetti from "canvas-confetti";
+import { openContactModal } from "@/components/ui/ContactModal";
 
 export default function ContactFooter() {
-  const [time, setTime] = useState<string>("");
+  const [time, setTime] = useState("");
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -28,18 +29,25 @@ export default function ContactFooter() {
   }, []);
 
   const handleAction = () => {
-    navigator.clipboard.writeText("rishu2300@gmail.com");
-    setCopied(true);
     confetti({
       particleCount: 80,
       spread: 70,
       origin: { y: 0.8 },
       colors: ["#fcee0a", "#00f0ff", "#ff003c"],
     });
+    openContactModal();
+  };
 
-    // Automatically open mail compose
-    window.location.href = "mailto:rishu2300@gmail.com?subject=Opportunity%20/%20Inquiry%20-%20Abhinav%20Kataria";
-
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText("rishu2300@gmail.com");
+    setCopied(true);
+    confetti({
+      particleCount: 50,
+      spread: 60,
+      origin: { y: 0.8 },
+      colors: ["#fcee0a", "#00f0ff", "#ff003c"],
+    });
     setTimeout(() => setCopied(false), 2500);
   };
 
@@ -69,7 +77,7 @@ export default function ContactFooter() {
             >
               <ArrowUpRight className="w-8 h-8 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform stroke-[2.5]" />
               <span className="text-sm sm:text-base font-mono tracking-widest mt-1 font-bold">
-                {copied ? "COPIED" : "CONTACT"}
+                CONTACT
               </span>
             </button>
           </div>
@@ -85,15 +93,21 @@ export default function ContactFooter() {
             <div>
               <button
                 onClick={handleAction}
-                className="flex items-center gap-2 text-sm font-mono text-zinc-200 hover:text-[#fcee0a] transition-colors"
+                className="flex items-center gap-2 text-sm font-mono text-zinc-200 hover:text-[#fcee0a] transition-colors group cursor-pointer"
               >
                 <Mail className="w-4 h-4 text-[#fcee0a]" />
-                <span className="font-medium">rishu2300@gmail.com</span>
-                {copied ? (
-                  <Check className="w-3.5 h-3.5 text-[#fcee0a]" />
-                ) : (
-                  <Copy className="w-3.5 h-3.5 text-zinc-500" />
-                )}
+                <span className="font-medium underline-offset-4 group-hover:underline">rishu2300@gmail.com</span>
+                <span
+                  onClick={handleCopyEmail}
+                  title="Copy email to clipboard"
+                  className="p-1 hover:text-white transition-colors"
+                >
+                  {copied ? (
+                    <Check className="w-3.5 h-3.5 text-[#fcee0a]" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5 text-zinc-500" />
+                  )}
+                </span>
               </button>
             </div>
           </div>

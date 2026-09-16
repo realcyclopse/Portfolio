@@ -6,8 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, FileText, Sparkles, Menu, X, Mail } from "lucide-react";
 import confetti from "canvas-confetti";
 
+import { openContactModal } from "@/components/ui/ContactModal";
+
 export default function Header() {
-  const [copied, setCopied] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const triggerCelebration = () => {
@@ -20,14 +21,8 @@ export default function Header() {
   };
 
   const handleLetsTalk = () => {
-    navigator.clipboard.writeText("rishu2300@gmail.com");
-    setCopied(true);
     triggerCelebration();
-
-    // Automatically open mail compose in new window/tab
-    window.location.href = "mailto:rishu2300@gmail.com?subject=Opportunity%20/%20Inquiry%20-%20Abhinav%20Kataria";
-
-    setTimeout(() => setCopied(false), 2500);
+    openContactModal();
   };
 
   const navLinks = [
@@ -96,7 +91,7 @@ export default function Header() {
               className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#fcee0a] hover:bg-white text-black font-bold text-xs font-mono transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(252,238,10,0.5)] border border-[#fcee0a]"
             >
               <Mail className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>{copied ? "OPENING MAIL..." : "LET'S TALK"}</span>
+              <span>LET&apos;S TALK</span>
               <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
             </button>
 
