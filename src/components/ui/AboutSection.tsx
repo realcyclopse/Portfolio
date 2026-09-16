@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { GraduationCap, MapPin, Compass } from "lucide-react";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function AboutSection() {
   return (
     <section id="about" className="py-24 px-4 sm:px-8 max-w-7xl mx-auto">
@@ -30,9 +32,10 @@ export default function AboutSection() {
           <div className="relative rounded-2xl overflow-hidden glass-panel p-2.5 border border-[#fcee0a]/20 hover:border-[#fcee0a]/70 transition-colors group">
             <div className="relative h-[380px] w-full rounded-xl overflow-hidden">
               <Image
-                src="/images/profilepic.jpg"
+                src={`${basePath}/images/profilepic.jpg`}
                 alt="Abhinav Kataria"
                 fill
+                priority
                 className="object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
