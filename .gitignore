@@ -15,6 +15,7 @@
 /build
 
 # misc
+/resumes
 .DS_Store
 *.pem
 
