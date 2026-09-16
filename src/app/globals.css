@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #050608;
+  --foreground: #f3f4f6;
+  --cp-yellow: #fcee0a;
+  --cp-cyan: #00f0ff;
+  --cp-red: #ff003c;
+  --cp-dark: #0d0f14;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide default cursor on devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: default;
+  }
+}
+
+/* Custom Cyberpunk 2077 Selection */
+::selection {
+  background-color: #fcee0a;
+  color: #000000;
+}
+
+/* Cyberpunk Glitch & Chromatic Aberration */
+@keyframes glitch-anim {
+  0% {
+    transform: translate(0);
+    text-shadow: -2px 0 #00f0ff, 2px 0 #ff003c;
+  }
+  20% {
+    transform: translate(-2px, 1px);
+    text-shadow: 2px 0 #00f0ff, -2px 0 #ff003c;
+  }
+  40% {
+    transform: translate(2px, -1px);
+    text-shadow: -2px 0 #ff003c, 2px 0 #00f0ff;
+  }
+  60% {
+    transform: translate(-1px, 2px);
+    text-shadow: 2px 0 #fcee0a, -2px 0 #00f0ff;
+  }
+  80% {
+    transform: translate(1px, -1px);
+    text-shadow: -2px 0 #00f0ff, 2px 0 #ff003c;
+  }
+  100% {
+    transform: translate(0);
+    text-shadow: -2px 0 #00f0ff, 2px 0 #ff003c;
+  }
+}
+
+.glitch-hover:hover {
+  animation: glitch-anim 0.22s steps(2, start) infinite;
+}
+
+.glitch-active {
+  animation: glitch-anim 3s infinite;
+}
+
+/* Cyberpunk Chamfered Corners */
+.cyber-cut {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 14px) 0,
+    100% 14px,
+    100% 100%,
+    14px 100%,
+    0 calc(100% - 14px)
+  );
+}
+
+.cyber-cut-sm {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
+}
+
+.cyber-btn-yellow {
+  background-color: #fcee0a;
+  color: #000000;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cyber-btn-yellow:hover {
+  background-color: #ffffff;
+  box-shadow: 0 0 25px rgba(252, 238, 10, 0.7);
+  transform: translateY(-1px);
+}
+
+/* Subtle Cyber Grid Background */
+.cyber-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(252, 238, 10, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(252, 238, 10, 0.025) 1px, transparent 1px);
+}
+
+/* Lenis Smooth Scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Noise overlay */
+.bg-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(20, 22, 29, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(28, 31, 42, 0.85);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.15);
+}
+
+/* Marquee infinite scroll */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
